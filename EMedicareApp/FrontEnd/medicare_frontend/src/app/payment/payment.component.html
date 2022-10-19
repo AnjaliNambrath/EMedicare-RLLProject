@@ -1,0 +1,31 @@
+<form #s="ngForm">
+  <h3>Confirm Your Product</h3>
+          <h3>Please Enter The Required Details To Proceed</h3>
+      <div class="form-group">
+      Choose the Payment Method
+      <select name="demo" id="#">
+          <option selected="selected" value="one">Debit Card</option>
+          <option value="two">Credit Card</option>
+          <option value="three">UPI</option>
+          </select>
+          </div>
+          <div class="form-group">
+              <label> Card Number/UPI Id </label>
+              <input type="text" required class="form-control" name="id" ngModel #id="ngModel"/>
+              <span 
+            *ngIf="id.invalid && id.touched" class="error">required</span>
+        </div>
+        <div class="form-group">
+          <label> Address Line 1 </label>
+          <input type="text" type="text" required class="form-control" name="a1" ngModel #a1="ngModel"/>
+    </div>
+    <div class="form-group">
+      <label> Address Line 2 </label>
+      <input type="text" type="text" class="form-control" name="a2" ngModel #a2="ngModel"/>
+      <span 
+            *ngIf="a2.invalid && a2.touched" class="error">required</span>
+  </div>
+      <br>  <input type="submit" class="btn btn-success" value="CONFIRM" (click)="deletecart(email)"/>
+  &nbsp;&nbsp;
+  <button (click)="back()" class="btn btn-danger">ABORT</button>
+  </form>

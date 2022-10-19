@@ -1,0 +1,46 @@
+package com.medicare.service;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+
+public class AccountServiceTest {
+  @BeforeMethod
+  public void beforeMethod() {
+  }
+
+  @AfterMethod
+  public void afterMethod() {
+  }
+
+  @BeforeClass
+  public void beforeClass() {
+  }
+
+  @AfterClass
+  public void afterClass() {
+  }
+
+
+  @Test
+  public void LoginTest() {
+    throw new RuntimeException("Test not implemented");
+  }
+
+  @Test
+  public void signUpTest() {
+    throw new RuntimeException("Test not implemented");
+  }
+
+  @Test
+  public void updatePasswordTest() {
+    throw new RuntimeException("Test not implemented");
+  }
+
+  @Test
+  public void updateProfileTest() {
+    throw new RuntimeException("Test not implemented");
+  }
+}

@@ -1,0 +1,130 @@
+<div>
+
+  <nav class="navbar navbar-light bg-primary">
+    <div class="container">
+      <h1 style="color: white">Admin Dashboard</h1>
+      <div class="d-fles">
+        <button (click)="clickAddMedicine()" type="button" data-toggle="modal" data-target="#exampleModal"
+          class="btn btn-success">
+          Add Medicine
+        </button>
+        <button class="btn btn-success"><a style="color: white" routerLink="/">LOGOUT</a><br></button>
+      </div>
+    </div>
+  </nav>
+  <h1 style="text-align: center">Medicine Details</h1>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Medicine Id</th>
+        <th scope="col">Images</th>
+        <th scope="col">Medicine Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Description</th>
+        <th scope="col">Seller Details</th>
+        <th scope="col">Category</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete Product</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{product.medid}}</td>
+        <td><img src='{{product.medimg}}' width="200px" heigth="200px" /> </td>
+        <td>{{product.medname }}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.seller}}</td>
+        <td>{{product.category}}</td>
+        <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop"
+            (click)="updateProduct(product)">Edit</button></td>
+        <td><input type="button" value="Delete" class="btn btn-danger" (click)="deleteMedicine(product.medid)" /></td>
+      </tr>
+    </tbody>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Medicine Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="productRef" (ngSubmit)="storeProduct()">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Medicine Id</label>
+                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  formControlName="medid" />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Medicine Name</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" formControlName="medname" />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Price</label>
+                <input type="number" class="form-control" id="exampleInputPassword1" formControlName="price" />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Description</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" formControlName="description" />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Seller</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" formControlName="seller" />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Category</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" formControlName="category" />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Image URL</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" formControlName="medimg" />
+              </div>
+              <input type="submit" value="Add Medicine" class="btn btn-success" *ngIf="showAdd">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Model to update Medicine -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Update Medicine Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="updateProductDetails()">
+              <label>Medicine Id</label><br />
+              <input type="number" name="medid" [(ngModel)]="medid" readonly class="form-control" /><br />
+              <label>Medicine name</label><br />
+              <input type="text" name="medname" [(ngModel)]="medname" class="form-control" /><br />
+              <label>Enter Description</label><br />
+              <input type="text" name="description" [(ngModel)]="description" class="form-control" /><br />
+              <label>Enter Price</label><br />
+              <input type="number" name="price" [(ngModel)]="price" class="form-control" /><br />
+              <label>Enter Seller</label><br />
+              <input type="text" name="seller" [(ngModel)]="seller" class="form-control" /><br />
+              <label>Enter Image URL</label><br />
+              <input type="text" name="medimg" [(ngModel)]="medimg" class="form-control" /><br />
+              <label>Enter Category Type </label><br />
+              <input type="text" name="category" [(ngModel)]="category" class="form-control" /><br />
+              <button style="margin:5px;" type="submit" class="btn btn-primary bn">Update</button>
+              <button style="margin:5px;" type="reset" class="btn btn-primary  bn">Reset</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

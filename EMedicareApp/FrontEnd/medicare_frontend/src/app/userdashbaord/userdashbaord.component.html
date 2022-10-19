@@ -1,0 +1,158 @@
+<div>
+  <h4>Welcome to home page {{user}} <a routerLink="/login" class="btn btn-secondary">LOGOUT</a><a routerLink="/viewcart" class="btn btn-info">View My Cart</a>
+  <a routerLink="/userProfile" class="btn btn-secondary">UPDATE PROFILE</a> </h4>
+
+  <hr>
+  <!--<p>userdashbaord works!</p>-->
+
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="flex-direction: row-reverse;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <input style="display: flex!important" type="text" placeholder="search" [(ngModel)]="medicine_name">
+      </div>
+    </div>
+  </nav>
+
+  <table class="table" *ngIf="medicine_name!==''">
+    <thead>
+      <tr>
+        <th scope="col">medid</th>
+        <th scope="col">medname</th>
+        <th scope="col">price</th>
+        <th scope="col">seller</th>
+        <th scope="col">description</th>
+        <th scope="col">medimg</th>
+        <th scope="col">category</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let medicine of medicines">
+        <ng-container *ngIf="medicine.medname.includes(medicine_name)">
+
+
+          <th scope="row">{{medicine.medid}}</th>
+          <td>{{medicine.medname}}</td>
+          <td>{{medicine.price}}</td>
+          <td>{{medicine.seller}}</td>
+          <td>{{medicine.description}}</td>
+          <td><img src='{{medicine.medimg}}' width="200px" heigth="200px" /> </td>
+          <td>{{medicine.category}}</td>
+          <td><input type="button" class="btn btn-success" value="ADD TO CART" (click)="addtocart(medicine)" /></td>
+        </ng-container>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <button (click)="cattoggleOn =!cattoggleOn" type="button" class="btn btn-primary">Tablets</button>
+  <button (click)="cattoggleOn1 =!cattoggleOn1" type="button" class="btn btn-primary">Syrups</button>
+
+  <table *ngIf="!cattoggleOn" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Seller</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medicine of medicines">
+        <ng-container *ngIf="medicine.category=='Tablets'">
+          <th scope="row">{{medicine.medid}}</th>
+          <td><img src='{{medicine.medimg}}' width="200px" heigth="200px" /> </td>
+          <td>{{medicine.medname}}</td>
+          <td>{{medicine.price}}</td>
+          <td>{{medicine.seller}}</td>
+          <td>{{medicine.description}}</td>
+          <td>{{medicine.category}}</td>
+          <td><input type="button" class="btn btn-success" value="ADD TO CART" (click)="addtocart(medicine)" /></td>
+        </ng-container>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+  <!-- <button (click)="cattoggleOn1 =!cattoggleOn1" type="button" class="btn btn-primary">Syrups</button> -->
+
+  <table *ngIf="!cattoggleOn1" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Seller</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medicine of medicines">
+        <ng-container *ngIf="medicine.category=='Syrup'">
+          <th scope="row">{{medicine.medid}}</th>
+          <td><img src='{{medicine.medimg}}' width="200px" heigth="200px" /> </td>
+          <td>{{medicine.medname}}</td>
+          <td>{{medicine.price}}</td>
+          <td>{{medicine.seller}}</td>
+          <td>{{medicine.description}}</td>
+          <td>{{medicine.category}}</td>
+          <td><input type="button" class="btn btn-success" value="ADD TO CART" (click)="addtocart(medicine)" /></td>
+        </ng-container>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+
+
+
+  <!-- <button (click)="toggleOn =!toggleOn" type="button" class="btn btn-primary" >ViewAll</button> -->
+
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Seller</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medicine of medicines">
+        <th scope="row">{{medicine.medid}}</th>
+        <td><img src='{{medicine.medimg}}' width="200px" heigth="200px" /> </td>
+        <td>{{medicine.medname}}</td>
+        <td>{{medicine.price}}</td>
+        <td>{{medicine.seller}}</td>
+        <td>{{medicine.description}}</td>
+        <td>{{medicine.category}}</td>
+        <td><input type="button" class="btn btn-success" value="ADD TO CART" (click)="addtocart(medicine)" /></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--<div>
+    <p *ngFor="let medicine of medicine">MedId: {{medicine.medid}}</p>
+
+  </div>-->
+
+
+
+</div>

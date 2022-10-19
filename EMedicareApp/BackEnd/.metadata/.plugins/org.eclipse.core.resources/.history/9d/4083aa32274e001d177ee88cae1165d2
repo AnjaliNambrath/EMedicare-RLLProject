@@ -1,0 +1,47 @@
+package com.medicare.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.medicare.bean.Account;
+import com.medicare.repository.AccountRepository;
+
+@Service
+public class AccountService {
+	@Autowired
+	AccountRepository accountrepo;
+	public String signUp(Account account) {
+		Optional<Account> res=accountrepo.findById(account.getEmail());
+		if(res.isPresent()) {
+			return "The User already exist";
+		}else {
+			if(account.getTypeOfUser().equals("Admin")) {
+				return "You don't have permission to create a admin account";
+			}else {
+				accountrepo.save(account);
+				return "Account created successfully";
+			}
+		}
+	}
+	  public boolean Login(String email,String password) {
+		 
+		  return accountrepo.existsByEmailAndPassword(email,password);
+	  }
+	  
+	  public Account updatePassword(Account account) {
+		  Account ac=accountrepo.findById(account.getEmail()).orElse(null);
+		  ac.setPassword(account.getPassword());
+		  return accountrepo.save(ac);
+	  }
+	  public Account updateProfile(Account account) {
+          Account ac=accountrepo.findById(account.getEmail()).orElse(null);
+         
+          ac.setMoblie(account.getMoblie());
+		  ac.setName(account.getName());
+		  ac.setPassword(account.getPassword());
+		  return accountrepo.save(account);
+	  }
+	  
+}

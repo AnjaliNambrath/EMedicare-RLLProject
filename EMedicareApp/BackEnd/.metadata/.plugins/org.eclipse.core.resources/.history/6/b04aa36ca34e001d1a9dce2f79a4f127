@@ -1,0 +1,91 @@
+package com.medicare.bean;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+public class Medicine {
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
+private int medid;
+private String medname;
+private float price;
+private String seller;
+private String description;
+private String medimg;
+private String category;
+public int getMedid() {
+	return medid;
+}
+public void setMedid(int medid) {
+	this.medid = medid;
+}
+public String getMedname() {
+	return medname;
+}
+public void setMedname(String medname) {
+	this.medname = medname;
+}
+public double getPrice() {
+	return price;
+}
+public void setPrice(float price) {
+	this.price = price;
+}
+public String getSeller() {
+	return seller;
+}
+public void setSeller(String seller) {
+	this.seller = seller;
+}
+public String getDescription() {
+	return description;
+}
+public void setDescription(String description) {
+	this.description = description;
+}
+public String getmedimg() {
+	return medimg;
+}
+public void setmedimg(String medimg) {
+	this.medimg = medimg;
+}
+public String getCategory() {
+	return category;
+}
+public void setCategory(String category) {
+	this.category = category;
+}
+public Medicine(int medid, String medname, float price, String seller, String description, String medimg,String category) {
+	super();
+	this.medid = medid;
+	this.medname = medname;
+	this.price = price;
+	this.seller = seller;
+	this.description = description;
+	this.medimg = medimg;
+	this.category = category;
+}
+
+public Medicine() {
+	this.medid = medid;
+	this.medname = medname;
+	this.price = price;
+	this.seller = seller;
+	this.description = description;
+	this.medimg=medimg;
+	this.category = category;
+	
+	// TODO Auto-generated constructor stub
+}
+
+
+	
+
+}
+

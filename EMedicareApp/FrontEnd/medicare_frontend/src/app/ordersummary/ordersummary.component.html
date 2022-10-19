@@ -1,0 +1,25 @@
+<div>
+    <h5>ORDER SUMMARY</h5>
+    <span >
+        <div class="container">
+            <table class="table">
+                <tr>
+                    <th>Medicine ID</th>
+                    <th>Medicine Name</th>
+                    <th>Price</th>
+                    
+                </tr>
+                <tr *ngFor="let r of items">
+                    <td>{{r.medid}}</td>
+                    <td>{{r.medname}}</td>
+                    <td>{{r.price}}</td>
+                </tr>
+            </table>
+            <hr>
+        </div>
+    </span>
+    <div align="left">
+        <h4>Total Amount:&nbsp;&nbsp;Rs. {{bill}} <a routerLink="/payment" class="btn btn-primary" style="float: right;">PROCEED TO PAYMENT</a></h4><br>
+        </div>
+        <button (click)="back()" class="btn btn-dark">GO BACK</button>
+</div>

@@ -1,0 +1,26 @@
+<div>
+    <h5>CART</h5>
+    <div align="right">
+        <button (click)="back()" class="btn btn-dark">GO BACK</button>
+    </div>
+    <span >
+        <div class="container">
+            <table class="table mt-3">
+                <tr>
+                    <th >Medicine ID</th>
+                    <th>Medicine Name</th>
+                    <th>Price</th>
+                </tr>
+                <tr *ngFor="let r of items">
+                    <td>{{r.medid}}</td>
+                    <td>{{r.medname}}</td>
+                    <td>{{r.price}}</td>
+                    <td><input type="button" class="btn btn-danger" value="REMOVE ITEM" (click)="deleteItem(r.medid,r.email)"/>
+                </tr>
+            </table>
+        </div>
+    </span>
+    <td style="float:right;"><a routerLink="/ordersummary" class="btn btn-primary" (click)="bill(email)">VIEW ORDER SUMMARY</a>
+        
+</div>
+

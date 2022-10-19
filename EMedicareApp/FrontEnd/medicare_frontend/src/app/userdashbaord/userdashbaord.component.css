@@ -1,0 +1,12 @@
+table, th,td {
+    border: 1px solid rosybrown;
+    margin-left: 0.5%;
+    margin-right:50%; 
+
+  }
+  .btn-secondary{
+    float: right;
+  }
+  .btn-info{
+    float: right;
+  }

@@ -1,0 +1,93 @@
+package com.medicare.service;
+
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.suite.api.SelectPackages;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.medicare.bean.Medicine;
+import com.medicare.repository.MedicineRepository;
+import com.medicare.service.MedicineService;
+@SelectPackages("com.medicare")
+@RunWith(Suite.class)
+@SuiteClasses({})
+@SpringBootTest
+public class MedicineServiceTest {
+	
+@Autowired
+MedicineService ms;
+@Autowired 
+MedicineRepository mr;
+
+@Test
+@DisplayName("GET All Medicines")
+public void getallmedicinesTest(){
+
+    Set<Medicine> ks = ms.getMedicines();
+ double rs =ks.size();
+ assertTrue(rs>0);
+
+}
+
+
+@Test
+@DisplayName("UPDATE Medicines")
+public void updatemedicinedetails() {
+	Medicine md =new Medicine();
+	md.setMedid(1);
+	md.setMedname("neuro");
+	md.setCategory("ferver");
+	md.setPrice(40);
+	md.setSeller("jaswanth");
+	md.setDescription("used for fever");
+	mr.save(md);
+	assertEquals(md.getPrice(),40);
+	
+	
+	
+}
+
+@Test
+@DisplayName("Delete Medicine")
+public void deletemedicine() {
+	Medicine md =new Medicine();
+	md.setMedid(1);
+	md.setMedname("neuro");
+	ms.deleteMedicine(1);
+	assertFalse(mr.existsById(md.getMedid()));
+	
+	
+	
+}
+
+@Test
+@DisplayName("Medicines Category")
+public void MedicineCategory() {
+	List<Medicine> Categorylist=ms.getCategory("syrup");
+	assertEquals(Categorylist.size(),2);
+	
+}
+
+@Test
+@DisplayName("GET All MedicineBYID")
+public void Medicineid() {
+	Medicine md;
+	md=ms.getMedicine(3);
+	assertEquals(md.getMedname(),"feglow");
+
+
+
+}
+}

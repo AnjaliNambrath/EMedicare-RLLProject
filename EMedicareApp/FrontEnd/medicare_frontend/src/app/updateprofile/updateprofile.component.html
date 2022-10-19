@@ -1,0 +1,76 @@
+<div>
+    <h5>UPDATE MY PROFILE</h5>
+    <div align="right">
+        <button (click)="back()" class="btn btn-dark">GO BACK</button>
+    </div>
+    <span >
+        <div class="container">
+            <table class="table mt-3">
+                <tr>
+                    <th>Email ID</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                </tr>
+                <tr>
+                    <td>{{myprofile.email}}</td>
+                    <td>{{myprofile.name}}</td>
+                    <td>{{myprofile.mobile}}</td>
+                </tr>
+            </table>
+        </div>
+    </span><br>
+    <td style="float:right;"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop"
+        (click)="updateProf(myprofile)">UPDATE PROFILE</button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"
+        (click)="updatePass(myprofile)">UPDATE PASSWORD</button>    
+    </div>
+
+ <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+ aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="staticBackdropLabel">Update My Profile</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <form (ngSubmit)="saveUpdateprofile()">
+         <label>Email Id</label><br />
+         <input type="email" name="email" [(ngModel)]="email" readonly class="form-control" /><br />
+         <label>Name</label><br />
+         <input type="text" name="name" [(ngModel)]="name" class="form-control" /><br />
+         <label>Mobile</label><br />
+         <input type="number" name="mobile" [(ngModel)]="mobile" class="form-control" /><br />
+         <button style="margin:5px;" type="submit" class="btn btn-primary bn">Update</button>
+         <button style="margin:5px;" type="reset" class="btn btn-primary  bn">Reset</button>
+       </form>
+     </div>
+   </div>
+ </div>
+</div>
+
+<div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+ aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">Update Password</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <form (ngSubmit)="saveUpdatepassword()">
+         <label>Email Id</label><br />
+         <input type="email" name="email" [(ngModel)]="email" readonly class="form-control" /><br />
+         <label>New Password</label><br />
+         <input type="text" name="password" [(ngModel)]="password" class="form-control" /><br />
+         <button style="margin:5px;" type="submit" class="btn btn-primary bn">Update</button>
+         <button style="margin:5px;" type="reset" class="btn btn-primary  bn">Reset</button>
+       </form>
+     </div>
+   </div>
+ </div>
+</div>
